@@ -31,7 +31,7 @@ public class UsuarioService {
 		usuario.setSenha(CryptoHelper.SHA256Encrypt(dto.getSenha()));
 
 		if (usuarioRepository.existsByEmail(usuario.getEmail())) {
-			return "O email informado já está cadastrado.";
+			throw new IllegalArgumentException("O email informado já está cadastrado.");
 		}
 
 		else {
